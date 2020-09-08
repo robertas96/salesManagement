@@ -6,7 +6,6 @@ import lt.project.SalesManagement.order.entity.Order;
 
 import javax.persistence.*;
 import java.util.List;
-import java.util.Set;
 
 @Data
 @Entity
@@ -30,23 +29,14 @@ public class Client {
     private Long bankAccount;
 
     @Column(nullable = false)
-    private String password;
-
-    @Column(nullable = false)
     private String email;
 
-    @OneToMany(mappedBy = "client", cascade = CascadeType.ALL)
+    @OneToMany(mappedBy = "client")
     private List<Order> ordersList;
 
-    @OneToMany(mappedBy = "client", cascade = CascadeType.ALL)
+    @OneToMany(mappedBy = "client")
     private List<Invoice> invoicesList;
 
-    @ManyToMany
-    @JoinTable(
-            name = "clients_roles",
-            joinColumns = {@JoinColumn(name = "client_id")},
-            inverseJoinColumns = {@JoinColumn(name = "role_id")})
-    private Set<Role> roles;
-
-
+    @OneToOne(fetch = FetchType.LAZY, mappedBy = "client")
+    private User user;
 }

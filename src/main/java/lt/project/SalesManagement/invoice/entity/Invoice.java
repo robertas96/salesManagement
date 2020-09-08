@@ -25,8 +25,8 @@ public class Invoice {
     @JoinColumn(name = "invoice", updatable = false)
     private List<Order> order;
 
-    @ManyToOne
-    @JoinColumn(name = "client_id", updatable = false)
+    @ManyToOne(fetch = FetchType.LAZY, optional = false)
+    @JoinColumn(name = "client_id", nullable = false)
     private Client client;
 
     @Column(name = "invoice_sum")

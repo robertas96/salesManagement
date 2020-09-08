@@ -15,7 +15,7 @@ public class Role {
     @Column(name = "role_id")
     private Long id;
 
-    @Enumerated
+    @Enumerated(value = EnumType.STRING)
     @NaturalId
     private RoleName role;
 

@@ -21,8 +21,9 @@ public class Product {
     @Column(name = "product_name")
     String productName;
 
-    @Enumerated(value = EnumType.STRING)
-    private Category category;
+    @ManyToOne(fetch = FetchType.LAZY)
+    @JoinColumn(nullable = false)
+    private ProductCategory productCategory;
 
     @Column(name = "stock")
     BigDecimal stock;
@@ -32,5 +33,4 @@ public class Product {
 
     @Column(name = "trade_price")
     BigDecimal tradePrice;
-
 }
